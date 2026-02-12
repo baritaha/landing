@@ -1,159 +1,17 @@
 import Image from "next/image";
-
-const NAV_LINKS = [
-  { label: "Features", href: "#features" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Support", href: "#support" },
-];
-
-const FEATURE_CARDS = [
-  {
-    title: "AI Writing Assistance",
-    desc: "Write faster with smart AI",
-    icon: "✍️",
-  },
-  { title: "Image Generation", desc: "Create stunning images", icon: "🖼️" },
-  { title: "AI Chatbot", desc: "Get instant answers anytime", icon: "💬" },
-];
-
-const HOW_IT_WORKS = [
-  { n: 1, title: "Sign Up", desc: "Create your account instantly" },
-  { n: 2, title: "Customize", desc: "Set preferences in seconds" },
-  { n: 3, title: "Generate Results", desc: "Get outputs fast and easy" },
-];
-
-const TESTIMONIALS = [
-  {
-    name: "Sarah M.",
-    role: "Startup Founder",
-    quote: "NovaAI transformed our workflow. Highly recommended",
-  },
-  {
-    name: "David L.",
-    role: "Marketing Director",
-    quote: "NovaAI saved our time daily. Super smooth results",
-  },
-  {
-    name: "Emily R.",
-    role: "Product Manager",
-    quote: "NovaAI boosted our productivity. Very impressive",
-  },
-];
-
-const FAQS = [
-  {
-    q: "How does the free trial work",
-    a: "You can try NovaAI with no card required and cancel anytime.",
-  },
-  {
-    q: "Can I cancel anytime",
-    a: "Yes. You can cancel from your billing settings in a few clicks.",
-  },
-  {
-    q: "Is customer support available 24/7",
-    a: "Yes, support is available around the clock.",
-  },
-  {
-    q: "Do you offer team discounts",
-    a: "Yes. Contact us for team and enterprise pricing.",
-  },
-];
-
-function SoftBg() {
-  // نفس فكرة الخلفية “الناعمة” في تصميمك (دوائر ضبابية)
-  return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0 overflow-hidden"
-    >
-      <div className="absolute -left-32 -top-32 h-[420px] w-[420px] rounded-full bg-sky-200/35 blur-3xl" />
-      <div className="absolute right-[-180px] top-[-120px] h-[520px] w-[520px] rounded-full bg-indigo-200/35 blur-3xl" />
-      <div className="absolute left-1/2 top-[260px] h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-blue-100/40 blur-3xl" />
-    </div>
-  );
-}
-
-function Card({
-  children,
-  className = "",
-  id,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  id?: string;
-}) {
-  return (
-    <div
-      id={id}
-      className={[
-        "rounded-[22px] border border-slate-200/70 bg-white/80 backdrop-blur",
-        "shadow-[0_14px_40px_-28px_rgba(15,23,42,0.45)]",
-        className,
-      ].join(" ")}
-    >
-      {children}
-    </div>
-  );
-}
+import Header from "./components/Header";
+import SoftBg from "./components/SoftBg";
+import Features from "./components/Features";
+import { TESTIMONIALS, FAQS } from "./constants";
 
 
-
-function Bullet({ children }: { children: React.ReactNode }) {
-  return (
-    <li className="flex items-start gap-3 text-sm text-slate-700">
-      <span className="mt-[7px] h-2 w-2 rounded-full bg-blue-600/80" />
-      <span className="leading-6">{children}</span>
-    </li>
-  );
-}
 
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-[#F7FAFF] text-slate-900">
       <SoftBg />
 
-      {/* NAVBAR (Features / Pricing / Support / Get Started) */}
-      <header className="relative z-50">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
-          {/* Logo (image+text) */}
-          <div className="flex items-center gap-2">
-            <Image
-              src="/assets/images/logo.png"
-              alt="NovaAI"
-              width={110}
-              height={32}
-              priority
-              className="h-8 w-auto"
-            />
-          </div>
-
-          <nav className="hidden items-center gap-7 md:flex">
-            {NAV_LINKS.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                className="text-sm font-medium text-slate-700 hover:text-slate-900"
-              >
-                {l.label}
-              </a>
-            ))}
-            <a
-              href="#"
-              className="rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-5 py-2 text-sm font-semibold text-white shadow-[0_14px_28px_-18px_rgba(37,99,235,0.65)] hover:opacity-95"
-            >
-              Get Started
-            </a>
-          </nav>
-
-          {/* Mobile CTA only (مثل ما بنعمل لاحقًا hamburger إذا بدك) */}
-          <a
-            href="#"
-            className="md:hidden rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-2 text-sm font-semibold text-white"
-          >
-            Get Started
-          </a>
-        </div>
-      </header>
+      <Header />
 
       <section className="relative overflow-hidden">
         {/* الخلفية */}
